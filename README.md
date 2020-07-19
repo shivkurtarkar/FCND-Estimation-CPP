@@ -237,6 +237,37 @@ For this project, you will need to submit:
 
  - a write up addressing all the points of the rubric
 
+##  Write up ##
+
+## Sensor Noise
+### Determine the standard deviation of the measurement noise of both GPS X data and Accelerometer X data.
+
+I wrote a small python program [findStandardDeviation.py](./findStandardDeviation.py) that reads the graph files and gives std deviation. you need to set the file path in the program. I ran this for both of the graph files.
+
+- MeasuredStdDev_GPSPosXY = 0.7091878282995169
+- MeasuredStdDev_AccelXY = 0.4996120725700246
+
+## Attitude Estimation
+### Implement a better rate gyro attitude integration scheme in the UpdateFromIMU() function.
+i used the `Quaternion<float>` class, initialized using FromEuler123_RPY function. This creates quaternion from Euler Roll/PitchYaw. Then used IntegrateBodyRate function. to calculate integral.
+This is handles in QuadEstimatorEKF.cpp [line 100-105](./src/QuadEstimatorEKF.cpp#L100-L105)
+
+## Prediction Step
+### Implement all of the elements of the prediction step for the estimator.
+We update state update elements in QuadEstimatorEKF.cpp [line 174-182](./src/QuadEstimatorEKF.cpp#L174-L182).
+Then we calculate Rbg Prime matrix in  QuadEstimatorEKF.cpp [line 211-217](./src/QuadEstimatorEKF.cpp#L211-L217),  based on  "Estimation for Quadrotors" paper Eq. 52
+And then use it in covariance update step in QuadEstimatorEKF.cpp [line 264-272](./src/QuadEstimatorEKF.cpp#L264-L272). We calculate Jacobian based on "Estimation for Quadrotors" paper Eq. 51.
+
+## Magnetometer Update
+### Implement the magnetometer update.
+This is implimented based on "Estimation for Quadrotors" paper (  Eq. 56 , Eq. 57 and  Eq. 58) 
+ in QuadEstimatorEKF.cpp [line 325-333](./src/QuadEstimatorEKF.cpp#L325-L333)
+
+##Closed Loop + GPS Update
+### Implement the GPS update.
+This is implimented based on "Estimation for Quadrotors" paper (  Eq. 53 , Eq. 54 and  Eq. 55)
+in QuadEstimatorEKF.cpp [line L299-302](./src/QuadEstimatorEKF.cpp#L299-L302)
+
 ## Authors ##
 
 Thanks to Fotokite for the initial development of the project code and simulator.
