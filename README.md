@@ -263,7 +263,7 @@ And then use it in covariance update step in QuadEstimatorEKF.cpp [line 264-272]
 This is implimented based on "Estimation for Quadrotors" paper (  Eq. 56 , Eq. 57 and  Eq. 58) 
  in QuadEstimatorEKF.cpp [line 325-333](./src/QuadEstimatorEKF.cpp#L325-L333)
 
-##Closed Loop + GPS Update
+## Closed Loop + GPS Update
 ### Implement the GPS update.
 This is implimented based on "Estimation for Quadrotors" paper (  Eq. 53 , Eq. 54 and  Eq. 55)
 in QuadEstimatorEKF.cpp [line L299-302](./src/QuadEstimatorEKF.cpp#L299-L302)
